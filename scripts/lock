@@ -1,0 +1,32 @@
+#!/bin/bash
+
+#CURRENT_LAYOUT=$(setxkbmap -query | awk '/layout:/ {print $2}')
+#setxkbmap us
+#setxkbmap "$CURRENT_LAYOUT"
+
+
+
+
+
+CURRENT_LAYOUT=$(setxkbmap -query | awk '/layout:/ {print $2}')
+setxkbmap us
+
+
+icon="/home/jalal-afkhami/Pics/s2.png"
+tmpbg='/tmp/screen.png'
+
+scrot "$tmpbg"
+
+convert "$tmpbg" -filter Gaussian -blur 2x2 "$tmpbg"
+convert "$tmpbg" "$icon" -gravity South -composite "$tmpbg"
+#convert "$tmpbg" "$icon" -gravity south -geometry +695-360 -composite "$tmpbg"
+#convert "$tmpbg" "$icon" -gravity south -geometry +0-100 -composite "$tmpbg"
+#convert "$tmpbg" "$icon" -gravity south -geometry +455+0 -composite "$tmpbg"
+#i3lock -i "$tmpbg"
+
+i3lock  -i "$tmpbg" -u
+#xtrlock
+rm -rf /tmp/screen.png
+#i3lock --blur=0 --composite --image /home/erfan.arhami/Pictures/im_fine_transparent.png --inside-color=00000000 --ring-color=ffffff88
+
+setxkbmap "$CURRENT_LAYOUT"
