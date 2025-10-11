@@ -1,7 +1,6 @@
 local wezterm = require 'wezterm'
 local config = {}
 
--- استفاده از config builder برای خطاهای بهتر
 if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
