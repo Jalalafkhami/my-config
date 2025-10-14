@@ -6,54 +6,84 @@ if wezterm.config_builder then
 end
 
 -- =========================================
--- ظاهری و تم
+-- فونت و ظاهر
 -- =========================================
-config.color_scheme = 'Tokyo Night'
+-- JetBrains Mono که از قبل نصب است
 config.font = wezterm.font('JetBrains Mono', { weight = 'Medium' })
-config.font_size = 12.0
+config.font_size = 12.5
 
--- شفافیت پس‌زمینه
+-- تم زیبای Catppuccin
+-- config.color_scheme = 'Rosé Pine Moon'
+config.color_scheme = 'Catppuccin Mocha'
+-- config.color_scheme = 'Batman'
+-- config.color_scheme = 'Kanagawa (Gogh)'
+-- config.color_scheme = 'Dracula'
+-- config.color_scheme = 'Nord'
+-- config.color_scheme = 'Gruvbox Dark (Gogh)'
+
+config.window_background_opacity = 0.92
+-- =========================================
+-- عکس پس‌زمینه
+-- =========================================
+-- مسیر مطلق به عکس
+config.window_background_image = os.getenv("HOME") .. '/Pics/pexels-sebastiaan9977-3022001.jpg'
+
+-- تنظیمات رنگی عکس
+config.window_background_image_hsb = {
+	brightness = 0.1, -- تاریک کردن عکس برای خوانایی متن
+	hue = 1.0,
+	saturation = 1.0,
+}
+
+-- شفافیت کلی پنجره (اختیاری)
 config.window_background_opacity = 0.95
-config.macos_window_background_blur = 20
 
--- نوار عنوان
-config.window_decorations = "RESIZE"
-config.hide_tab_bar_if_only_one_tab = true
+-- شفافیت متن پس‌زمینه برای خوانایی بهتر
+config.text_background_opacity = 0.9
+
+
+-- Padding بیشتر برای زیبایی
+config.window_padding = {
+	left = 15,
+	right = 15,
+	top = 15,
+	bottom = 15,
+}
 
 -- =========================================
--- تب‌ها
+-- تب بار سفارشی
 -- =========================================
 config.enable_tab_bar = true
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = false
-config.show_tab_index_in_tab_bar = false
+config.hide_tab_bar_if_only_one_tab = true
 
--- استایل تب‌ها
+-- رنگ‌های Catppuccin Mocha برای تب‌ها
 config.colors = {
 	tab_bar = {
-		background = '#1a1b26',
+		background = '#11111b',
 		active_tab = {
-			bg_color = '#7aa2f7',
-			fg_color = '#1a1b26',
+			bg_color = '#cba6f7',
+			fg_color = '#11111b',
 			intensity = 'Bold',
 		},
 		inactive_tab = {
-			bg_color = '#292e42',
-			fg_color = '#787c99',
+			bg_color = '#313244',
+			fg_color = '#6c7086',
 		},
 		inactive_tab_hover = {
-			bg_color = '#3b4261',
-			fg_color = '#c0caf5',
+			bg_color = '#45475a',
+			fg_color = '#cdd6f4',
 		},
 		new_tab = {
-			bg_color = '#1a1b26',
-			fg_color = '#7aa2f7',
+			bg_color = '#11111b',
+			fg_color = '#cba6f7',
 		},
 	},
 }
 
 -- =========================================
--- کیبایندینگ‌ها (Keybindings)
+-- کیبایندینگ‌ها
 -- =========================================
 config.keys = {
 	-- تب جدید
@@ -66,7 +96,7 @@ config.keys = {
 	{ key = 'Tab',        mods = 'CTRL',           action = wezterm.action.ActivateTabRelative(1) },
 	{ key = 'Tab',        mods = 'CTRL|SHIFT',     action = wezterm.action.ActivateTabRelative(-1) },
 
-	-- تقسیم پنجره (Split Panes)
+	-- تقسیم پنجره
 	{ key = 'd',          mods = 'CTRL|SHIFT',     action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' } },
 	{ key = 'D',          mods = 'CTRL|SHIFT',     action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' } },
 
@@ -119,20 +149,15 @@ config.mouse_bindings = {
 }
 
 -- =========================================
--- پرفورمنس
+-- پرفورمنس (رفع مشکل i3)
 -- =========================================
-config.front_end = "WebGpu"
+config.front_end = "OpenGL" -- به جای WebGpu
 config.max_fps = 120
 config.animation_fps = 60
 
 -- =========================================
--- Padding
+-- ظاهر پنجره
 -- =========================================
-config.window_padding = {
-	left = 10,
-	right = 10,
-	top = 10,
-	bottom = 10,
-}
+config.window_decorations = "RESIZE"
 
 return config
